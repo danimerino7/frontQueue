@@ -11,9 +11,18 @@
     width: 100%;
     height: 400px;
     box-shadow: 5px 5px 5px #888;
- }</style>
+ }
 
-<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+
+ .collection-item{
+    background-color: antiquewhite !important;
+ }
+
+
+
+ </style>
+
+
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
 
 
@@ -37,51 +46,53 @@
        <!--fin nav extendido-->
      <div class="nav-content">
       <ul class="tabs tabs-transparent">
-        <li><a href="#negocioDatos">Datos</a></li>
-        <li><a href="#cola">Cola</a></li>
-        <li><a href="#promo">Promociones</a></li>
+        <li><a href="#Contacto" onclick="section1()">Mapa</a></li>
+        <li><a href="#colas" onclick="section2()">Colas</a></li>
+        <li><a href="#colas" onclick="section3()">Historial</a></li>
       </ul>
   </div>
  </nav>
 <!--fin menu-->
-           <h2 class="center-align">Mapa I-Queue</h2>
+           <h2 class="center-align" id="tituloSeccion">Mapa I-Queue</h2>
 
-           <p>Click the button to create a P element with some text, and append it to DIV.</p>
-
-           <div id="myDIV">
-           A DIV element
-           </div>
-
-           <button onclick="myFunction()">Añadir</button>
-           <button onclick="myFunction2()">Borrar</button>
-
-           <p><strong>Example explained:</strong><br>First create a P node,<br> then create a Text node,<br> then append the Text node to the P node.<br>Finally, get the DIV element with id="myDIV", and append the P node to DIV.</p>
-
-           <script>
-           function myFunction() {
-            var div = document.createElement("DIV");
-             var para = document.createElement("P");
-             var t = document.createTextNode("This is a paragraph.");
-             para.appendChild(t);
-             div.appendChild(para);
-             document.getElementById("myDIV").appendChild(div);
-           }
-
-           function myFunction2() {
-
-             var myobj = document.getElementById("myDIV").t;
-  myobj.replaceChild(sp1, sp2);
-           }
+           <section class="container" >
 
 
+            <div id="map"></div>
 
-           </script>
-           <section class="container">
+            <div id="colas" hidden="true" >
+                <p>colas contenido</p>
+            </div>
 
-            <div id='mydiv'>TEXTO QUE VA A CAMBIAR</div>
-<br/>
-<input type='button' onclick='change()' value='cambiar valor'>
-            <div id="map">
+            <div id="historial" hidden="true">
+
+                <ul class="collection with-header" >
+                    <li class="collection-header"><h4 class="center-align">Historial de citas</h4></li>
+
+                    <li class="collection-item">
+                        Peluquería
+                        <a class="modal-trigger" href="#modal1"><i class="material-icons" style="vertical-align:middle; margin-left:5%">info</i></a></a>
+                        <a class="btn-floating btn-small waves-effect waves-light green" style="float: right; margin-top: -5px;"><i class="material-icons">add</i></a>
+                    </li>
+                    <li class="collection-item">
+                        Gimnasio
+                        <a class="modal-trigger" href="#modal1"><i class="material-icons" style="vertical-align:middle; margin-left:5%">info</i></a></a>
+                        <a class="btn-floating btn-small waves-effect waves-light green" style="float: right; margin-top: -5px;"><i class="material-icons">add</i></a>
+                    </li>
+                    <li class="collection-item">
+                        Panaderia
+                        <a class="modal-trigger" href="#modal1"><i class="material-icons" style="vertical-align:middle; margin-left:5%">info</i></a></a>
+                        <a class="btn-floating btn-small waves-effect waves-light green" style="float: right; margin-top: -5px;"><i class="material-icons">add</i></a>
+                    </li>
+                  </ul>
+
+
+
+
+
+
+
+
 
             </div>
            </section>
@@ -118,31 +129,267 @@
                              </footer>
 
 
+                              <!-- Modal Structure Datos de negocio -->
+                <div id="modal1" class="modal" style="min-width: 250px;max-width: 500px;">
+                    <div class="modal-content">
+                      <h4>Datos</h4>
+                      <p>Actividad a la que se dedica</p>
+
+                          <div class="input-field">
+                          <i class="material-icons prefix">schedule</i>
+                        <label>8:00-14:00</label>
+                      </div>
+                      <br>
+                      <div class="input-field">
+                        <i class="material-icons prefix">place
+                      </i>
+                        <label>Calle Sin nombre nº2</label>
+                      </div>
+                      <br>
+                    </div>
+                    <div class="modal-footer">
+                      <a href="#!" class="modal-close waves-effect waves-light btn red">Cerrar</a>
+                    </div>
+                  </div>
+                </div>
+
+
 </div>
 
 
-<script>
-    var map = L.map('map').
-       setView([41.66, -4.72],
-       15);
 
-L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    </body>
 
-maxZoom: 18
-}).addTo(map);
+    <script>
+        //modal
 
-L.control.scale().addTo(map);
-L.marker([41.66, -4.71],{draggable: true}).addTo(map);
-L.marker([41.70, -4.71],{draggable: true}).addTo(map);
-  </script>
+        document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
+  });
+
+    </script>
+
+    <script>//secciones por funciones
+        function section1(){
+            var titulo = document.getElementById("tituloSeccion");
+            titulo.textContent = "Mapa de negocios"
+            var contenido =    document.getElementById("map");
+            contenido.hidden = false;
+            var contenido2 =    document.getElementById("colas");
+            contenido2.hidden = true
+            var contenido3 =    document.getElementById("historial");
+            contenido3.hidden = true
+
+    }
+
+    function section2(){
+        var titulo = document.getElementById("tituloSeccion");
+        titulo.textContent = "Tus colas"
+        var contenido = document.getElementById("map");
+        contenido.hidden = true;
+        var contenido2 =    document.getElementById("colas");
+        contenido2.hidden = false
+        var contenido3 =    document.getElementById("historial");
+        contenido3.hidden = true
+    }
+
+    function section3(){
+        var titulo = document.getElementById("tituloSeccion");
+        titulo.textContent = ""
+        var contenido = document.getElementById("map");
+        contenido.hidden = true;
+        var contenido2 =    document.getElementById("colas");
+        contenido2.hidden = true
+        var contenido3 =    document.getElementById("historial");
+        contenido3.hidden = false
+    }
+    </script>
 
 
-<script>
+<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
 
+    <script> //map configuracion
+        var map = L.map('map').
+           setView([38.089923966368815, -3.615282093540719],
+           15);
+
+    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+
+    maxZoom: 18
+    }).addTo(map);
+
+    map.doubleClickZoom.disable();
+
+    L.control.scale().addTo(map);
+
+    //marker con click de popup
+    L.marker([38.09620852240139, -3.6383423859866477]).addTo(map)
+    .bindPopup('Mercadona')
+    .openPopup();
+
+       //marker con click de popup
+       L.marker([39.09620852240239, -3.6383423859866477]).addTo(map)
+    .bindPopup('Alcampo')
+    .openPopup().closePopup();
+
+
+    //evento click del mapa
+   //  map.on('click', function() {
+   // alert("has hecho click en el mapa");
+   // });
 
 </script>
 
-    </body>
+<!--boton para el street view-->
+<script>    L.StreetView = L.Control.extend({
+    options: {
+      google: true,
+    },
+
+    providers: [
+      ['google', '<i class="material-icons" style="padding:2px">accessibility</i>', 'Google Street View', false,
+        'https://www.google.com/maps?layer=c&cbll={lat},{lon}'],
+              ],
+
+    onAdd: function(map) {
+      this._container = L.DomUtil.create('div', 'leaflet-bar');
+      this._buttons = [];
+
+      for (var i = 0; i < this.providers.length; i++)
+        this._addProvider(this.providers[i]);
+
+      map.on('moveend', function() {
+        if (!this._fixed)
+          this._update(map.getCenter());
+      }, this);
+      this._update(map.getCenter());
+      return this._container;
+    },
+
+  /*
+    fixCoord: function(latlon) {
+      this._update(latlon);
+      this._fixed = true;
+    },
+    */
+
+
+
+    _addProvider: function(provider) {
+      if (!this.options[provider[0]])
+        return;
+      if (provider[0] == 'mapillary' && !this.options.mapillaryId)
+        return;
+      var button = L.DomUtil.create('a');
+      button.innerHTML = provider[1];
+      button.title = provider[2];
+      button._bounds = provider[3];
+      button._template = provider[4];
+      button.href = '#';
+      button.target = 'streetview';
+      button.style.padding = '0 8px';
+      button.style.width = 'auto';
+
+      // Some buttons require complex logic
+      if (provider[0] == 'mapillary') {
+        button._needUrl = false;
+        L.DomEvent.on(button, 'click', function(e) {
+          if (button._href) {
+            this._ajaxRequest(
+              button._href.replace(/{id}/, this.options.mapillaryId),
+              function(data) {
+                if (data && data.features && data.features[0].properties) {
+                  var photoKey = data.features[0].properties.key,
+                      url = 'https://www.mapillary.com/map/im/{key}'.replace(/{key}/, photoKey);
+                  window.open(url, button.target);
+                }
+              }
+            );
+          }
+          return L.DomEvent.preventDefault(e);
+        }, this);
+      } else if (provider[0] == 'openstreetcam') {
+        button._needUrl = false;
+        L.DomEvent.on(button, 'click', function(e) {
+          if (button._href) {
+            this._ajaxRequest(
+              'http://openstreetcam.org/nearby-tracks',
+              function(data) {
+                if (data && data.osv && data.osv.sequences) {
+                  var seq = data.osv.sequences[0],
+                      url = 'https://www.openstreetcam.org/details/'+seq.sequence_id+'/'+seq.sequence_index;
+                  window.open(url, button.target);
+                }
+              },
+              button._href
+            );
+          }
+          return L.DomEvent.preventDefault(e);
+        }, this);
+      } else
+        button._needUrl = true;
+
+      // Overriding some of the leaflet styles
+      button.style.display = 'inline-block';
+      button.style.border = 'none';
+      button.style.borderRadius = '0 0 0 0';
+      this._buttons.push(button);
+    },
+
+    _update: function(center) {
+      if (!center)
+        return;
+      var last;
+      for (var i = 0; i < this._buttons.length; i++) {
+        var b = this._buttons[i],
+            show = !b._bounds || b._bounds.contains(center),
+            vis = this._container.contains(b);
+
+        if (show && !vis) {
+          ref = last ? last.nextSibling : this._container.firstChild;
+          this._container.insertBefore(b, ref);
+        } else if (!show && vis) {
+          this._container.removeChild(b);
+          return;
+        }
+        last = b;
+
+        var tmpl = b._template;
+        tmpl = tmpl
+          .replace(/{lon}/g, L.Util.formatNum(center.lng, 6))
+          .replace(/{lat}/g, L.Util.formatNum(center.lat, 6));
+        if (b._needUrl)
+          b.href = tmpl;
+        else
+          b._href = tmpl;
+      }
+    },
+
+    _ajaxRequest: function(url, callback, post_data) {
+      if (window.XMLHttpRequest === undefined)
+        return;
+      var req = new XMLHttpRequest();
+      req.open(post_data ? 'POST' : "GET", url);
+      if (post_data)
+        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      req.onreadystatechange = function() {
+        if (req.readyState === 4 && req.status == 200) {
+          var data = (JSON.parse(req.responseText));
+          callback(data);
+        }
+      };
+      req.send(post_data);
+    }
+  });
+
+  L.streetView = function(options) {
+    return new L.StreetView(options);
+  }
+
+  L.streetView().addTo(map);
+
+  </script>
 
 
  <!-- Compiled and minified CSS -->
