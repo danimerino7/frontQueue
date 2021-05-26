@@ -11,7 +11,16 @@
     width: 100%;
     height: 400px;
     box-shadow: 5px 5px 5px #888;
- }</style>
+ }
+
+
+ .collection-item{
+    background-color: antiquewhite !important;
+ }
+
+
+
+ </style>
 
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
@@ -46,18 +55,45 @@
 <!--fin menu-->
            <h2 class="center-align" id="tituloSeccion">Mapa I-Queue</h2>
 
-           <section class="container">
+           <section class="container" >
 
-            <div id="map" >
 
-            </div>
+            <div id="map"></div>
 
             <div id="colas" hidden="true" >
                 <p>colas contenido</p>
             </div>
 
             <div id="historial" hidden="true">
-                <p>historial contenido</p>
+
+                <ul class="collection with-header" >
+                    <li class="collection-header"><h4 class="center-align">Historial de citas</h4></li>
+
+                    <li class="collection-item">
+                        Peluquería
+                        <a class="modal-trigger" href="#modal1"><i class="material-icons" style="vertical-align:middle; margin-left:5%">info</i></a></a>
+                        <a class="btn-floating btn-small waves-effect waves-light green" style="float: right; margin-top: -5px;"><i class="material-icons">add</i></a>
+                    </li>
+                    <li class="collection-item">
+                        Gimnasio
+                        <a class="modal-trigger" href="#modal1"><i class="material-icons" style="vertical-align:middle; margin-left:5%">info</i></a></a>
+                        <a class="btn-floating btn-small waves-effect waves-light green" style="float: right; margin-top: -5px;"><i class="material-icons">add</i></a>
+                    </li>
+                    <li class="collection-item">
+                        Panaderia
+                        <a class="modal-trigger" href="#modal1"><i class="material-icons" style="vertical-align:middle; margin-left:5%">info</i></a></a>
+                        <a class="btn-floating btn-small waves-effect waves-light green" style="float: right; margin-top: -5px;"><i class="material-icons">add</i></a>
+                    </li>
+                  </ul>
+
+
+
+
+
+
+
+
+
             </div>
            </section>
         <!--fin login-->
@@ -93,11 +129,46 @@
                              </footer>
 
 
+                              <!-- Modal Structure Datos de negocio -->
+                <div id="modal1" class="modal" style="min-width: 250px;max-width: 500px;">
+                    <div class="modal-content">
+                      <h4>Datos</h4>
+                      <p>Actividad a la que se dedica</p>
+
+                          <div class="input-field">
+                          <i class="material-icons prefix">schedule</i>
+                        <label>8:00-14:00</label>
+                      </div>
+                      <br>
+                      <div class="input-field">
+                        <i class="material-icons prefix">place
+                      </i>
+                        <label>Calle Sin nombre nº2</label>
+                      </div>
+                      <br>
+                    </div>
+                    <div class="modal-footer">
+                      <a href="#!" class="modal-close waves-effect waves-light btn red">Cerrar</a>
+                    </div>
+                  </div>
+                </div>
+
+
 </div>
 
 
 
     </body>
+
+    <script>
+        //modal
+
+        document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
+  });
+
+    </script>
 
     <script>//secciones por funciones
         function section1(){
@@ -125,7 +196,7 @@
 
     function section3(){
         var titulo = document.getElementById("tituloSeccion");
-        titulo.textContent = "historial"
+        titulo.textContent = ""
         var contenido = document.getElementById("map");
         contenido.hidden = true;
         var contenido2 =    document.getElementById("colas");
